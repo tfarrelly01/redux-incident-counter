@@ -1,25 +1,18 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement, set } from './actions';
-
 import { SetCounter } from './SetCounter';
+import { useCounter } from './useCounter';
 
 export const Counter = () => {
   const incident = 'Incident';
-
-  // mapStateToProps equivalent from connect API in react-redux
-  const count = useSelector((state) => state.count);
-
-  // mapDispatchToProps equivalent from connect API in react-redux
-  const dispatch = useDispatch();
+  const { count, increment, decrement, set } = useCounter();
 
   return (
     <main className="Counter">
       <h1>Days Since Last {incident}</h1>
       <p className="count">{count}</p>
       <section className="controls">
-        <button onClick={() => dispatch(increment())}>Increment</button>
-        <button onClick={() => dispatch(set(0))}>Reset</button>
-        <button onClick={() => dispatch(decrement())}>Decrement</button>
+        <button onClick={() => increment()}>Increment</button>
+        <button onClick={() => set(0)}>Reset</button>
+        <button onClick={() => decrement()}>Decrement</button>
       </section>
       <SetCounter />
     </main>
